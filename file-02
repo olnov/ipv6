@@ -1,0 +1,9 @@
+modprobe jool_siit
+jool_siit instance add "example" --iptables
+
+jool_siit -i "example" eamt add 2001:db8:4::/120 10.10.1.0/24
+jool_siit -i "example" eamt add 2001:db8:6::/120 10.10.2.0/24
+
+
+ip6tables -t mangle -A PREROUTING -s 2001:db8:6::/120 -d 2001:db8:4::/120 -j JOOL_SIIT --instance "example"
+iptables  -t mangle -A PREROUTING -s 10.10.1.0/24 -d 10.10.2.0/24 -j JOOL_SIIT --instance "example"

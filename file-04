@@ -1,0 +1,10 @@
+systemctl stop NetworkManager.service
+
+ip link set enp3s0 up
+ip addr add 2001:db8:6::1/96 dev enp3s0
+ 
+ip link set enp2s0 up
+ip addr add 10.10.1.10/24 dev enp2s0
+ 
+sysctl -w net.ipv4.conf.all.forwarding=1
+sysctl -w net.ipv6.conf.all.forwarding=1
