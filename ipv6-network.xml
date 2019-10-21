@@ -1,0 +1,6 @@
+<network>
+    <name>ipv6-network</name>
+    <bridge name="virbr4" />
+    <ip family="ipv6" address="2001:db8:6::" prefix="96">
+    </ip>
+</network>
